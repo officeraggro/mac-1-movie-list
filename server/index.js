@@ -1,7 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const port = 8080
-const { getAllMovies, getMovieById } = require('./controller')
+const { getAllMovies, getMovieById, insertNewMovie } = require('./controller')
 
 const app = express()
 
@@ -17,6 +17,14 @@ app.get('/movies', (req, res) => {
     getAllMovies()
         .then(data => res.status(200).send(data))
         .catch(err => res.status(404).send('Page not found'))
+})
+
+app.post('/movies', (req, res) => {
+    const movie = req.body
+
+    insertNewMovie(movie)
+        .then(data => res.status(201).send('New movie added'))
+        .catch(err => res.status(400).send('Invalid request'))
 })
 
 // Fetch movie by id

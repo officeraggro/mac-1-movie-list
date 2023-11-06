@@ -1,4 +1,5 @@
 import {useContext, useEffect, useState, useRef} from 'react'
+import {Link} from 'react-router-dom'
 import MovieContext from "./MovieContext"
 
 const Detail = () => {
@@ -19,6 +20,7 @@ const Detail = () => {
     return (
         <>
             <div>
+                <Link to='/home'>Back</Link>
                 {movieDetail.map((elem, indx) => {
                     return (
                         <>

@@ -36,7 +36,7 @@ body {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
     padding: 30px;
-    border-radius: 5%;
+    border-radius: 3%;
 }
 
 .movie-flex-card:hover {
@@ -49,6 +49,7 @@ body {
 
 .movie-poster-img-sm {
     height: 350px;
+    width: 250px;
 }
 
 .movie-poster-img-lg {
@@ -66,4 +67,10 @@ body {
 
 .banner-pad {
     margin: 100px;
+}
+
+.new-movie-container {
+    padding: 30px;
+    display: flex;
+    flex-direction:row;
 }

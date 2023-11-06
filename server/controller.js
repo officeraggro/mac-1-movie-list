@@ -8,4 +8,8 @@ const getMovieById = (id) => {
     return knex('movies').select('*').where('id', id)
 }
 
-module.exports = { getAllMovies, getMovieById }
+const insertNewMovie = (movie) => {
+    return knex('movies').insert(movie)
+}
+
+module.exports = { getAllMovies, getMovieById, insertNewMovie }
