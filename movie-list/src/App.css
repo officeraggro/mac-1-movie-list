@@ -15,6 +15,28 @@ body {
 
 }
 
+.movie-detail-grid {
+    display: grid;
+    grid-template-columns: .5fr 1fr 1fr .5fr;
+    grid-template-rows: .5fr .5fr 1fr;
+    width: 100%;
+    column-gap: 25px;
+    row-gap: 0;
+}
+
+
+.movie-detail-left-item {
+    display: flex;
+    grid-column: 2;
+    grid-row: 1 / 2;
+    justify-content: right;
+}
+
+.movie-detail-right-item {
+    grid-column: 3;
+    grid-row: 1 / 2;
+}
+
 .top-title {
     color: rgb(248, 239, 239);
     margin-left: 20px;

@@ -57,6 +57,17 @@ const MovieList = () => {
     window.location.reload(false)
   }
 
+  const handleDelete = (id) => {
+    const deleteMovie = async () => {
+        const response = await fetch(`http://localhost:8080/movies/${id}`, {
+            method: 'DELETE',
+            headers: {'Content-Type': 'application/json'}
+        })
+    }
+    deleteMovie()
+    window.location.reload(false)
+  }
+
   return (
     <>
       <div className="movie-list-container">
@@ -92,6 +103,7 @@ const MovieList = () => {
                         {elem.release_date} | {elem.rating} | {elem.runtime}
                       </p>
                     </div>
+                    <button onClick={e => handleDelete(elem.id)}>Delete</button>
                   </div>
                 </>
               );

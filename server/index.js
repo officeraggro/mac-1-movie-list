@@ -1,7 +1,13 @@
 const express = require('express')
 const cors = require('cors')
 const port = 8080
-const { getAllMovies, getMovieById, insertNewMovie } = require('./controller')
+const {
+  getAllMovies,
+  getMovieById,
+  insertNewMovie,
+  deleteMovieById,
+  updateUserReview,
+} = require("./controller");
 
 const app = express()
 
@@ -34,6 +40,23 @@ app.get('/movies/:id', (req, res) => {
     getMovieById(id)
         .then(data => res.status(200).send(data))
         .catch(err => res.status(404).send('Page not found'))
+})
+
+app.patch('/movies/:id', (req, res) => {
+    const { id } = req.params
+    const { user_score, user_review } = req.body
+    
+    updateUserReview(id, user_score, user_review)
+        .then(data => res.status(200).send('Movie review updated'))
+        .catch(err => res.status(400).send('Invalid request'))
+})
+
+app.delete('/movies/:id', (req, res) => {
+    const { id } = req.params
+
+    deleteMovieById(id)
+        .then(data => res.status(200).send('Movie deleted'))
+        .catch(err => res.status(400).send('Invalid request'))
 })
 
 app.listen(port, () => {
