@@ -42,13 +42,22 @@ app.get('/movies/:id', (req, res) => {
         .catch(err => res.status(404).send('Page not found'))
 })
 
-app.patch('/movies/:id', (req, res) => {
+app.patch('/movies/:id', async (req, res) => {
     const { id } = req.params
     const { user_score, user_review } = req.body
-    
-    updateUserReview(id, user_score, user_review)
-        .then(data => res.status(200).send('Movie review updated'))
-        .catch(err => res.status(400).send('Invalid request'))
+    try{
+        const update = await updateUserReview(id, user_score, user_review)
+        if (update) {
+            getMovieById(id)
+                .then(data => res.status(200).json(data))
+        } else {
+            res.status(400).send('Invalid request')
+        }
+
+    } catch (err) {
+        res.status(500).json({message: "Error updating new post", error: err})
+    }
+        
 })
 
 app.delete('/movies/:id', (req, res) => {

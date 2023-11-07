@@ -31,9 +31,10 @@ const Detail = () => {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(userReview),
         });
+        const data = await response.json()
+        setMovieDetail(data)
     }
     updateUserReview()
-    window.location.reload(false);
   }
 
   return (
